@@ -6,7 +6,7 @@
 /*   By: schahir <schahir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 18:55:53 by schahir           #+#    #+#             */
-/*   Updated: 2024/11/07 18:47:58 by schahir          ###   ########.fr       */
+/*   Updated: 2024/11/08 18:10:49 by schahir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,42 +63,31 @@ int ft_putunsnbr(unsigned int n)
 	return count;
 }
 
-int ft_puthex(int n)
+int ft_puthex(unsigned int n)
 {
-	long nb = (long)n;
 	char hex_digits[] = "0123456789abcdef";
 	int count = 0;
 
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb = -nb;
-		count++;
-	}
-	if (nb >= 16)
-		count += ft_puthex(nb / 16);
+	if (n >= 16)
+		count += ft_puthex(n / 16);
+	ft_putchar(hex_digits[n % 16]);
 	count++;
 	return count;
 }
 
-int ft_putbhex(int n)
+
+int ft_putbhex(unsigned int n)
 {
-	long nb = (long)n;
 	char hex_digits[] = "0123456789ABCDEF";
 	int count = 0;
 
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb = -nb;
-		count++;
-	}
-	if (nb >= 16)
-		count += ft_putbhex(nb / 16);
-	ft_putchar(hex_digits[nb % 16]);
+	if (n >= 16)
+		count += ft_putbhex(n / 16);
+	ft_putchar(hex_digits[n % 16]);
 	count++;
 	return count;
 }
+
 
 int ft_putptr(void *p)
 {
@@ -187,5 +176,5 @@ int ft_printf(const char *format, ...)
 int main()
 {
 	int a = 1337;
-	ft_printf("hello %s %% %s %c %u %x %X %p \" \n",NULL, "hello", 'c', -12, 255, 255, &a);
+	ft_printf("hello %s  %% %s %c %u %x %X %p \" \n",NULL, "hello", 'c', -12, -34, 255, &a);
 }
