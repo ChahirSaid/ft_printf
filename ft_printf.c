@@ -6,7 +6,7 @@
 /*   By: schahir <schahir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 18:55:53 by schahir           #+#    #+#             */
-/*   Updated: 2024/11/07 18:37:54 by schahir          ###   ########.fr       */
+/*   Updated: 2024/11/07 18:47:58 by schahir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int ft_putptr(void *p)
 		count += ft_putstr("(null)");
 		return count;
 	}
-	count += ft_putstr("0x");
 	if (ptr >= 16)
 		count += ft_putptr((void *)(ptr / 16));
 	ft_putchar(hex_digits[ptr % 16]);
@@ -169,6 +168,7 @@ int ft_printf(const char *format, ...)
 			}
 			else if (*format == 'p')
 			{
+				count += ft_putstr("0x");
 			    count += ft_putptr(va_arg(args, void *));
 				format++;
 			}
@@ -186,6 +186,6 @@ int ft_printf(const char *format, ...)
 
 int main()
 {
-    int a = 1337;
-    ft_printf("hello %s %% %s %c %u %x %X %p \" \n",NULL, "hello", 'c', -12, 255, 255, &a);
+	int a = 1337;
+	ft_printf("hello %s %% %s %c %u %x %X %p \" \n",NULL, "hello", 'c', -12, 255, 255, &a);
 }
