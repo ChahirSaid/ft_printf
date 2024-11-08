@@ -6,12 +6,11 @@
 /*   By: schahir <schahir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 18:55:53 by schahir           #+#    #+#             */
-/*   Updated: 2024/11/08 18:10:49 by schahir          ###   ########.fr       */
+/*   Updated: 2024/11/08 19:56:48 by schahir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdarg.h>
+#include "libftprintf.h"
 
 int ft_putchar(char c)
 {
@@ -88,7 +87,6 @@ int ft_putbhex(unsigned int n)
 	return count;
 }
 
-
 int ft_putptr(void *p)
 {
 	unsigned long ptr = (unsigned long)p;
@@ -97,7 +95,7 @@ int ft_putptr(void *p)
 
 	if (p == NULL)
 	{
-		count += ft_putstr("(null)");
+		count += ft_putstr("(nil)");
 		return count;
 	}
 	if (ptr >= 16)
@@ -176,5 +174,6 @@ int ft_printf(const char *format, ...)
 int main()
 {
 	int a = 1337;
-	ft_printf("hello %s  %% %s %c %u %x %X %p \" \n",NULL, "hello", 'c', -12, -34, 255, &a);
+	int *ptr = NULL;
+	ft_printf("hello %s  %% %s %c %u %x %X %p %p \" \n",NULL, "hello", 'c', -12, -34, 255, &a, ptr);
 }
