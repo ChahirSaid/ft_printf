@@ -42,7 +42,7 @@ int	ft_atoi(const char *str, int *o_pos)
 	return (num);
 }
 
-int	in_set(char c, char *set)
+int	ft_strchr(char c, char *set)
 {
 	int	pos;
 
@@ -56,7 +56,7 @@ int	in_set(char c, char *set)
 int	putnbr(long nl)
 {
 	int		total;
-	long	num;	
+	long	num;
 
 	total = 0;
 	num = nl;

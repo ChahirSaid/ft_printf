@@ -34,7 +34,7 @@ int		ft_strlen(char *str);
 int		ft_atoi(const char *str, int *o_pos);
 int		print_str(char *str);
 int		ft_put_char(char c);
-int		in_set(char c, char *set);
+int		ft_strchr(char c, char *set);
 int		putnbr(long nl);
 void	init_flag(t_flag *flag);
 

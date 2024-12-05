@@ -66,9 +66,9 @@ int	process(const char *str, va_list *args, int *pos)
 		return (-1);
 	if (!check_format(str + (*pos)))
 		return (total += print_invalid_format(str + (*pos), pos), total);
-	while (in_set(str[(*pos) + 1], "0123456789# +-."))
+	while (ft_strchr(str[(*pos) + 1], "0123456789# +-."))
 	{
-		if (in_set(str[(*pos) + 1], "# +0-."))
+		if (ft_strchr(str[(*pos) + 1], "# +0-."))
 			handle_flags(&flag, str + (*pos), pos);
 		else
 		{

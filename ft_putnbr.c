@@ -3,7 +3,7 @@
 static int	print_minus(long *nl, int *len, t_flag flag)
 {
 	ft_put_char('-');
-	(*nl) = (*nl) * -1;
+	*nl = -*nl;
 	(*len)--;
 	if (flag.dot)
 		(*len)--;
@@ -27,23 +27,24 @@ static int	number_of_digit(long num)
 	return (pos);
 }
 
-static int	get_values(char	*prefix, int *len_prec, t_flag *flag, long nl)
+static int	get_values(char *prefix, int *len_prec, t_flag *flag, long nl)
 {
-	int		len;
+	int	len;
 
 	len = number_of_digit(nl);
 	*len_prec = len;
 	if (flag->precision > len)
 		*len_prec = flag->precision;
-	if (nl < 0 && flag->zero_offset > len && flag->precision > len)
-		(*len_prec)++;
-	if (nl < 0 && flag->dot && flag->precision < flag->zero_offset)
-		len++;
-	*prefix = '0';
-	if (flag->zero && flag->dot && flag->zero_offset > flag->precision)
-		*prefix = ' ';
-	if (!flag->zero)
-		*prefix = ' ';
+	if (nl < 0)
+	{
+		if (flag->zero_offset > len && flag->precision > len)
+			(*len_prec)++;
+		if (flag->dot && flag->precision < flag->zero_offset)
+			len++;
+	}
+	*prefix = ' ';
+	if (flag->zero && (!flag->dot || flag->zero_offset > flag->precision))
+		*prefix = '0';
 	if (flag->zero)
 		flag->min_width = flag->zero_offset;
 	if (flag->precision > flag->min_width)
@@ -53,16 +54,12 @@ static int	get_values(char	*prefix, int *len_prec, t_flag *flag, long nl)
 
 static int	print_di(int len, long nl, t_flag flag)
 {
-	int	total;
-
-	total = 0;
-	if (nl == 0 && flag.min_width && flag.min_width < len)
-		total += ft_put_char(' ');
-	else if (nl == 0 && flag.dot && !flag.precision && flag.min_width >= len)
-		total += ft_put_char(' ');
-	else if (!(nl == 0 && flag.dot && !flag.precision))
-		total += putnbr(nl);
-	return (total);
+	if (nl == 0 && ((flag.min_width && flag.min_width < len) || (flag.dot
+				&& !flag.precision && flag.min_width >= len)))
+		return (ft_put_char(' '));
+	if (nl == 0 && flag.dot && !flag.precision)
+		return (0);
+	return (putnbr(nl));
 }
 
 int	ft_putnbr(long nl, t_flag flag)

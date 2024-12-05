@@ -3,7 +3,7 @@
 int	print_unumber(unsigned long nl)
 {
 	int				total;
-	unsigned long	num;	
+	unsigned long	num;
 
 	total = 0;
 	num = nl;
@@ -17,9 +17,9 @@ static int	number_of_digit(unsigned long num)
 {
 	int	pos;
 
-	pos = 0;
 	if (num == 0)
 		return (1);
+	pos = 0;
 	while (num != 0)
 	{
 		num = num / 10;
@@ -28,7 +28,7 @@ static int	number_of_digit(unsigned long num)
 	return (pos);
 }
 
-static int	get_values(char	*prefix, int *lp, t_flag *flag, unsigned long num)
+static int	get_values(char *prefix, int *lp, t_flag *flag, unsigned long num)
 {
 	int	len;
 
@@ -36,11 +36,9 @@ static int	get_values(char	*prefix, int *lp, t_flag *flag, unsigned long num)
 	*lp = len;
 	if (flag->precision > len)
 		*lp = flag->precision;
-	*prefix = '0';
-	if (flag->zero && flag->dot && flag->zero_offset > flag->precision)
-		*prefix = ' ';
-	if (!flag->zero)
-		*prefix = ' ';
+	*prefix = ' ';
+	if (flag->zero && (!flag->dot || flag->zero_offset > flag->precision))
+		*prefix = '0';
 	if (flag->zero)
 		flag->min_width = flag->zero_offset;
 	if (flag->precision > flag->min_width)
@@ -50,16 +48,12 @@ static int	get_values(char	*prefix, int *lp, t_flag *flag, unsigned long num)
 
 static int	print_u(int len, unsigned long num, t_flag flag)
 {
-	int	total;
-
-	total = 0;
-	if (num == 0 && flag.min_width && flag.min_width < len)
-		total += ft_put_char(' ');
-	else if (num == 0 && flag.dot && !flag.precision && flag.min_width >= len)
-		total += ft_put_char(' ');
-	else if (!(num == 0 && flag.dot && !flag.precision))
-		total += print_unumber(num);
-	return (total);
+	if (num == 0 && ((flag.min_width && flag.min_width < len) || (flag.dot
+				&& !flag.precision && flag.min_width >= len)))
+		return (ft_put_char(' '));
+	if (num == 0 && flag.dot && !flag.precision)
+		return (0);
+	return (print_unumber(num));
 }
 
 int	ft_putunbr(unsigned long num, t_flag flag)

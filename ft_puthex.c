@@ -38,9 +38,9 @@ static int	ft_hexlen(int nbr)
 	return (total);
 }
 
-static int	get_values(char	*prefix, int *len_prec, t_flag *flag, int nbr)
+static int	get_values(char *prefix, int *len_prec, t_flag *flag, int nbr)
 {
-	int		len;
+	int	len;
 
 	len = ft_hexlen(nbr);
 	*len_prec = len;
@@ -60,8 +60,8 @@ static int	print_x(int isupper, int len, int nbr, t_flag flag)
 {
 	char	*base;
 
-	if (nbr == 0 && ((flag.min_width && flag.min_width < len)
-			|| (flag.dot && !flag.precision && flag.min_width >= len)))
+	if (nbr == 0 && ((flag.min_width && flag.min_width < len) || (flag.dot
+				&& !flag.precision && flag.min_width >= len)))
 		return (ft_put_char(' '));
 	if (nbr == 0 && flag.dot && !flag.precision)
 		return (0);

@@ -9,7 +9,7 @@ int	check_format(const char *str)
 	i = 1;
 	if (str[1] == '\0')
 		return (0);
-	while (str[i] && in_set(str[i], "# +0-"))
+	while (str[i] && ft_strchr(str[i], "# +0-"))
 		i++;
 	while (str[i] && (str[i] == '.' || (str[i] >= '0' && str[i] <= '9')))
 	{
@@ -21,7 +21,7 @@ int	check_format(const char *str)
 		}
 		i++;
 	}
-	if (dots > 1 || !in_set(str[i], "cspdiuxX%"))
+	if (dots > 1 || !ft_strchr(str[i], "cspdiuxX%"))
 		return (0);
 	return (1);
 }
@@ -33,7 +33,7 @@ int	print_invalid_format(const char *str, int *pos)
 
 	total = 0;
 	i = 0;
-	while (str[i] && !(in_set(str[i], "cspdiuxX%")))
+	while (str[i] && !(ft_strchr(str[i], "cspdiuxX%")))
 	{
 		total += ft_put_char(str[i]);
 		i++;
