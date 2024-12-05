@@ -62,11 +62,11 @@ int	putnbr(long nl)
 	num = nl;
 	if (nl < 0)
 	{
-		total += ft_putchar('-');
+		total += ft_put_char('-');
 		num = -nl;
 	}
 	if (num >= 10)
 		total += putnbr(num / 10);
-	total += ft_putchar((num % 10) + '0');
+	total += ft_put_char((num % 10) + '0');
 	return (total);
 }

@@ -9,7 +9,7 @@ int	print_unumber(unsigned long nl)
 	num = nl;
 	if (num >= 10)
 		total += print_unumber(num / 10);
-	total += ft_putchar((num % 10) + '0');
+	total += ft_put_char((num % 10) + '0');
 	return (total);
 }
 
@@ -54,9 +54,9 @@ static int	print_u(int len, unsigned long num, t_flag flag)
 
 	total = 0;
 	if (num == 0 && flag.min_width && flag.min_width < len)
-		total += ft_putchar(' ');
+		total += ft_put_char(' ');
 	else if (num == 0 && flag.dot && !flag.precision && flag.min_width >= len)
-		total += ft_putchar(' ');
+		total += ft_put_char(' ');
 	else if (!(num == 0 && flag.dot && !flag.precision))
 		total += print_unumber(num);
 	return (total);
@@ -72,11 +72,11 @@ int	ft_putunbr(unsigned long num, t_flag flag)
 	total = 0;
 	len = get_values(&prefix, &len_prec, &flag, num);
 	while (len_prec + total < flag.min_width)
-		total += ft_putchar(prefix);
+		total += ft_put_char(prefix);
 	while (len + total < flag.min_width)
-		total += ft_putchar('0');
+		total += ft_put_char('0');
 	total += print_u(len, num, flag);
 	while (total < flag.offset)
-		total += ft_putchar(' ');
+		total += ft_put_char(' ');
 	return (total);
 }
