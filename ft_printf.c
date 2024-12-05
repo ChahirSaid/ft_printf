@@ -25,25 +25,24 @@ void	process_flags(t_flag *flag, const char *str, int *pos)
 	}
 }
 
-
-int	handle_specifier(const char *str, va_list *params, t_flag flag, int *args_used)
+int	handle_spec(const char *str, va_list *args, t_flag flag, int *args_used)
 {
 	int	total;
 
 	total = 0;
 	*args_used = 1;
 	if (str[1] == 'c')
-		total += _putchar(va_arg(*params, int), flag);
+		total += _putchar(va_arg(*args, int), flag);
 	else if (str[1] == 's')
-		total += ft_printstr(va_arg(*params, char *), flag);
+		total += ft_printstr(va_arg(*args, char *), flag);
 	else if (str[1] == 'p')
-		total += ft_printpointer(va_arg(*params, void *), flag);
+		total += ft_printpointer(va_arg(*args, void *), flag);
 	else if (str[1] == 'd' || str[1] == 'i')
-		total += ft_printnum(va_arg(*params, int), flag);
+		total += ft_printnum(va_arg(*args, int), flag);
 	else if (str[1] == 'u')
-		total += ft_printunum(va_arg(*params, unsigned int), flag);
+		total += ft_printunum(va_arg(*args, unsigned int), flag);
 	else if (str[1] == 'x' || str[1] == 'X')
-		total += ft_printbnum(va_arg(*params, int), (str[1] == 'X'), flag);
+		total += ft_printbnum(va_arg(*args, int), (str[1] == 'X'), flag);
 	else if (str[1] == '%')
 	{
 		total += ft_putchar('%');
@@ -54,7 +53,7 @@ int	handle_specifier(const char *str, va_list *params, t_flag flag, int *args_us
 	return (total);
 }
 
-int	process(const char *str, va_list *params, int *pos)
+int	process(const char *str, va_list *args, int *pos)
 {
 	int		total;
 	t_flag	flag;
@@ -65,27 +64,27 @@ int	process(const char *str, va_list *params, int *pos)
 	args_used = 0;
 	if (str[(*pos) + 1] == '\0')
 		return (-1);
-	if (!check_format(str + (*pos))) 
+	if (!check_format(str + (*pos)))
 		return (total += print_invalid_format(str + (*pos), pos), total);
-	while (in_set(str[(*pos) + 1], "0123456789# +-.")) 
+	while (in_set(str[(*pos) + 1], "0123456789# +-."))
 	{
-		if (in_set(str[(*pos) + 1], "# +0-.")) 
+		if (in_set(str[(*pos) + 1], "# +0-."))
 			process_flags(&flag, str + (*pos), pos);
-		else 
+		else
 		{
 			flag.min_width = ft_atoi(str + (*pos) + 1, pos);
 			(*pos)--;
 		}
 		(*pos)++;
 	}
-	total += handle_specifier(str + (*pos), params, flag, &args_used);
+	total += handle_spec(str + (*pos), args, flag, &args_used);
 	(*pos)++;
 	return (total);
 }
 
 int	ft_printf(const char *str, ...)
 {
-	va_list	params;
+	va_list	args;
 	int		pos;
 	int		total;
 	int		temp;
@@ -94,20 +93,20 @@ int	ft_printf(const char *str, ...)
 		return (-1);
 	pos = 0;
 	total = 0;
-	va_start(params, str);
+	va_start(args, str);
 	while (str[pos])
 	{
 		if (str[pos] == '%')
 		{
-			temp = process(str, &params, &pos);
-			if (temp == -1) 
-				return (va_end(params), -1);
+			temp = process(str, &args, &pos);
+			if (temp == -1)
+				return (va_end(args), -1);
 			total += temp;
 		}
 		else
 			total += ft_putchar(str[pos]);
 		pos++;
 	}
-	va_end(params);
+	va_end(args);
 	return (total);
 }

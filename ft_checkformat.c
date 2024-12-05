@@ -2,8 +2,8 @@
 
 int	check_format(const char *str)
 {
-	int dots;
-	int i;
+	int	dots;
+	int	i;
 
 	dots = 0;
 	i = 1;
@@ -25,7 +25,6 @@ int	check_format(const char *str)
 		return (0);
 	return (1);
 }
-
 
 int	print_invalid_format(const char *str, int *pos)
 {

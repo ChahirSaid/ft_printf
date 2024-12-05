@@ -51,7 +51,6 @@ int	ft_printpointer(void *ptr, t_flag flag)
 			total += ft_putchar(' ');
 		return (total);
 	}
-
 	addr = (long unsigned)ptr;
 	total = 0;
 	len = get_hex_size(addr) + 2;

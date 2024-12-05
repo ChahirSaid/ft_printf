@@ -20,8 +20,8 @@ typedef struct s_flag
 
 int		ft_printf(const char *str, ...);
 
-int	check_format(const char *str);
-int	print_invalid_format(const char *str, int *pos);
+int		check_format(const char *str);
+int		print_invalid_format(const char *str, int *pos);
 
 int		_putchar(char c, t_flag flag);
 int		ft_printstr(char *str, t_flag flag);
