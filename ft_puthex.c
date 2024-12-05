@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-static int	print_number_base(int nbr, char *base)
+static int	ft_putnbr_base(int nbr, char *base)
 {
 	unsigned int	base_len;
 	unsigned int	nbrl;
@@ -11,8 +11,8 @@ static int	print_number_base(int nbr, char *base)
 	base_len = ft_strlen(base);
 	if (nbrl >= base_len)
 	{
-		total += print_number_base(nbrl / base_len, base);
-		total += print_number_base(nbrl % base_len, base);
+		total += ft_putnbr_base(nbrl / base_len, base);
+		total += ft_putnbr_base(nbrl % base_len, base);
 	}
 	else
 	{
@@ -70,9 +70,9 @@ static int	print_x(int isupper, int len, int nbr, t_flag flag)
 	else if (!(nbr == 0 && flag.dot && !flag.precision))
 	{
 		if (isupper)
-			total += print_number_base(nbr, "0123456789ABCDEF");
+			total += ft_putnbr_base(nbr, "0123456789ABCDEF");
 		else
-			total += print_number_base(nbr, "0123456789abcdef");
+			total += ft_putnbr_base(nbr, "0123456789abcdef");
 	}
 	return (total);
 }

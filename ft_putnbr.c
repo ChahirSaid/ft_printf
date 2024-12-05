@@ -61,7 +61,7 @@ static int	print_di(int len, long nl, t_flag flag)
 	else if (nl == 0 && flag.dot && !flag.precision && flag.min_width >= len)
 		total += ft_putchar(' ');
 	else if (!(nl == 0 && flag.dot && !flag.precision))
-		total += print_number(nl);
+		total += ft_putnbr(nl);
 	return (total);
 }
 

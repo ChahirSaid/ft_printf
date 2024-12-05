@@ -35,7 +35,7 @@ int		ft_atoi(const char *str, int *o_pos);
 int		print_str(char *str);
 int		ft_putchar(char c);
 int		in_set(char c, char *set);
-int		print_number(long nl);
+int		ft_putnbr(long nl);
 void	init_flag(t_flag *flag);
 
 #endif

@@ -1,5 +1,5 @@
-SRCS		= ft_printf.c ft_checkformat.c ft_utils.c ft_putchar.c ft_printstr.c \
-			ft_printpointer.c ft_printnum.c ft_printunum.c ft_printbnum.c
+SRCS		= ft_printf.c ft_checkformat.c ft_utils.c ft_putchar.c \
+			ft_putstr.c ft_putptr.c ft_putnbr.c ft_putunbr.c ft_puthex.c
 
 OBJS		= ${SRCS:.c=.o}
 NAME		= libftprintf.a
