@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-static int	print_long_as_hex(long unsigned addr)
+static int	ft_putlonghex(long unsigned addr)
 {
 	char	c;
 	int		total;
@@ -8,8 +8,8 @@ static int	print_long_as_hex(long unsigned addr)
 	total = 0;
 	if (addr >= 16)
 	{
-		total += print_long_as_hex(addr / 16);
-		total += print_long_as_hex(addr % 16);
+		total += ft_putlonghex(addr / 16);
+		total += ft_putlonghex(addr % 16);
 	}
 	else
 	{
@@ -57,7 +57,7 @@ int	ft_putptr(void *ptr, t_flag flag)
 	while (len + total < flag.min_width)
 		total += ft_put_char(' ');
 	total += print_str("0x");
-	total += print_long_as_hex(addr);
+	total += ft_putlonghex(addr);
 	while (total < flag.offset)
 		total += ft_put_char(' ');
 	return (total);
