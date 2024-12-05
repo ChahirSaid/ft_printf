@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-void	process_flags(t_flag *flag, const char *str, int *pos)
+void	handle_flags(t_flag *flag, const char *str, int *pos)
 {
 	if (str[1] == '#')
 		flag->sharp = 1;
@@ -32,20 +32,20 @@ int	handle_spec(const char *str, va_list *args, t_flag flag, int *args_used)
 	total = 0;
 	*args_used = 1;
 	if (str[1] == 'c')
-		total += _putchar(va_arg(*args, int), flag);
+		total += ft_putchar(va_arg(*args, int), flag);
 	else if (str[1] == 's')
-		total += ft_printstr(va_arg(*args, char *), flag);
+		total += ft_putstr(va_arg(*args, char *), flag);
 	else if (str[1] == 'p')
-		total += ft_printpointer(va_arg(*args, void *), flag);
+		total += ft_putptr(va_arg(*args, void *), flag);
 	else if (str[1] == 'd' || str[1] == 'i')
-		total += ft_printnum(va_arg(*args, int), flag);
+		total += ft_putnbr(va_arg(*args, int), flag);
 	else if (str[1] == 'u')
-		total += ft_printunum(va_arg(*args, unsigned int), flag);
+		total += ft_putunbr(va_arg(*args, unsigned int), flag);
 	else if (str[1] == 'x' || str[1] == 'X')
-		total += ft_printbnum(va_arg(*args, int), (str[1] == 'X'), flag);
+		total += ft_puthex(va_arg(*args, int), (str[1] == 'X'), flag);
 	else if (str[1] == '%')
 	{
-		total += ft_putchar('%');
+		total += ft_put_char('%');
 		*args_used = 0;
 	}
 	else
@@ -69,7 +69,7 @@ int	process(const char *str, va_list *args, int *pos)
 	while (in_set(str[(*pos) + 1], "0123456789# +-."))
 	{
 		if (in_set(str[(*pos) + 1], "# +0-."))
-			process_flags(&flag, str + (*pos), pos);
+			handle_flags(&flag, str + (*pos), pos);
 		else
 		{
 			flag.min_width = ft_atoi(str + (*pos) + 1, pos);
@@ -104,7 +104,7 @@ int	ft_printf(const char *str, ...)
 			total += temp;
 		}
 		else
-			total += ft_putchar(str[pos]);
+			total += ft_put_char(str[pos]);
 		pos++;
 	}
 	va_end(args);

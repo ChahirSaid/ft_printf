@@ -53,7 +53,7 @@ int	in_set(char c, char *set)
 	return (0);
 }
 
-int	ft_putnbr(long nl)
+int	putnbr(long nl)
 {
 	int		total;
 	long	num;	
@@ -66,7 +66,7 @@ int	ft_putnbr(long nl)
 		num = -nl;
 	}
 	if (num >= 10)
-		total += ft_putnbr(num / 10);
+		total += putnbr(num / 10);
 	total += ft_putchar((num % 10) + '0');
 	return (total);
 }

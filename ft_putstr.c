@@ -22,7 +22,7 @@ static int	print_str_size(char *str, int size)
 	return (pos);
 }
 
-int	ft_printstr(char *str, t_flag flag)
+int	ft_putstr(char *str, t_flag flag)
 {
 	int	pos;
 	int	len;
@@ -33,7 +33,7 @@ int	ft_printstr(char *str, t_flag flag)
 	else
 		len = ft_strlen(str);
 	while (pos + len < flag.min_width)
-		pos += ft_putchar(' ');
+		pos += ft_put_char(' ');
 	if (!flag.dot)
 		flag.precision = -1;
 	if (!str)
@@ -41,6 +41,6 @@ int	ft_printstr(char *str, t_flag flag)
 	else
 		pos += print_str_size(str, flag.precision);
 	while (pos < flag.offset)
-		pos += ft_putchar(' ');
+		pos += ft_put_char(' ');
 	return (pos);
 }

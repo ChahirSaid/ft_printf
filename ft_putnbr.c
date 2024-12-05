@@ -2,7 +2,7 @@
 
 static int	print_minus(long *nl, int *len, t_flag flag)
 {
-	ft_putchar('-');
+	ft_put_char('-');
 	(*nl) = (*nl) * -1;
 	(*len)--;
 	if (flag.dot)
@@ -57,15 +57,15 @@ static int	print_di(int len, long nl, t_flag flag)
 
 	total = 0;
 	if (nl == 0 && flag.min_width && flag.min_width < len)
-		total += ft_putchar(' ');
+		total += ft_put_char(' ');
 	else if (nl == 0 && flag.dot && !flag.precision && flag.min_width >= len)
-		total += ft_putchar(' ');
+		total += ft_put_char(' ');
 	else if (!(nl == 0 && flag.dot && !flag.precision))
-		total += ft_putnbr(nl);
+		total += putnbr(nl);
 	return (total);
 }
 
-int	ft_printnum(long nl, t_flag flag)
+int	ft_putnbr(long nl, t_flag flag)
 {
 	int		total;
 	int		len;
@@ -75,17 +75,17 @@ int	ft_printnum(long nl, t_flag flag)
 	total = 0;
 	len = get_values(&prefix, &len_prec, &flag, nl);
 	while (prefix == ' ' && len_prec + total < flag.min_width)
-		total += ft_putchar(' ');
+		total += ft_put_char(' ');
 	if (nl < 0)
 		total += print_minus(&nl, &len, flag);
 	else if (flag.space && nl >= 0 && !flag.plus && !flag.dot)
-		total += ft_putchar(' ');
+		total += ft_put_char(' ');
 	else if (flag.plus && nl >= 0 && !flag.dot)
-		total += ft_putchar('+');
+		total += ft_put_char('+');
 	while (len + total < flag.min_width)
-		total += ft_putchar('0');
+		total += ft_put_char('0');
 	total += print_di(len, nl, flag);
 	while (total < flag.offset)
-		total += ft_putchar(' ');
+		total += ft_put_char(' ');
 	return (total);
 }

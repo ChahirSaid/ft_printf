@@ -35,11 +35,11 @@ int	print_invalid_format(const char *str, int *pos)
 	i = 0;
 	while (str[i] && !(in_set(str[i], "cspdiuxX%")))
 	{
-		total += ft_putchar(str[i]);
+		total += ft_put_char(str[i]);
 		i++;
 	}
 	if (str[i])
-		total += ft_putchar(str[i]);
+		total += ft_put_char(str[i]);
 	*pos += i;
 	return (total);
 }

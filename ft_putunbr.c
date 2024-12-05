@@ -62,7 +62,7 @@ static int	print_u(int len, unsigned long num, t_flag flag)
 	return (total);
 }
 
-int	ft_printunum(unsigned long num, t_flag flag)
+int	ft_putunbr(unsigned long num, t_flag flag)
 {
 	int		total;
 	int		len;
