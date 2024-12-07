@@ -89,7 +89,7 @@ int	ft_strchr(char c, char *set)
  * @nl: Long integer to print
  *
  * Handles negative numbers by printing minus sign
- * 
+ *
  * @return: Total number of characters printed
  */
 int	putnbr(long nb)
