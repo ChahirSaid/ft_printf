@@ -30,12 +30,12 @@ int		ft_putnbr(long nb, t_flag flag);
 int		ft_putunbr(unsigned long nb, t_flag flag);
 int		ft_puthex(int nb, int isupper, t_flag flag);
 
-int		ft_strlen(char *str);
-int		ft_atoi(const char *str, int *o_pos);
-int		print_str(char *str);
-int		ft_put_char(char c);
-int		ft_strchr(char c, char *set);
-int		putnbr(long nb);
 void	init_flag(t_flag *flag);
+int		ft_strchr(char c, char *set);
+int		ft_atoi(const char *str, int *o_pos);
+int		ft_strlen(char *str);
+int		ft_put_char(char c);
+int		print_str(char *str);
+int		putnbr(long nb);
 
 #endif
