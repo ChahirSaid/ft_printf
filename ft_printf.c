@@ -44,7 +44,7 @@ void	handle_flags(t_flag *flag, const char *str, int *pos)
  * @args_used: Pointer to track if an argument was consumed
  *
  * Handles printing for different conversion specifiers (cspdiuxX%)
- * 
+ *
  * @return: Number of characters printed, or -1 if an invalid specifier
  */
 int	handle_spec(const char *str, va_list *args, t_flag flag, int *args_used)
@@ -83,7 +83,7 @@ int	handle_spec(const char *str, va_list *args, t_flag flag, int *args_used)
  * @pos: Pointer to current position in the string, updated during processing
  *
  * Parses flags, minimum width, and calls appropriate printing function
- * 
+ *
  * @return: Number of characters printed, or -1 on error
  */
 int	process(const char *str, va_list *args, int *pos)
@@ -121,8 +121,9 @@ int	process(const char *str, va_list *args, int *pos)
  * @str: Format string with conversion specifiers
  * @...: Variable number of arguments matching specifiers
  *
- * Parses format string, processes specifiers, and prints corresponding arguments
- * 
+ * Parses format string, processes specifiers,
+	and prints corresponding arguments
+ *
  * @return: Total number of characters printed, or -1 on error
  */
 int	ft_printf(const char *str, ...)

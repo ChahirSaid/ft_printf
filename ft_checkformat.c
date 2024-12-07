@@ -7,7 +7,7 @@
  *
  * Checks for valid flag combinations,
  *		dot (.) occurrence, and valid conversion specifiers
- * 
+ *
  * @return: 1 if format is valid, 0 if invalid
  */
 int	check_format(const char *str)
@@ -44,7 +44,7 @@ int	check_format(const char *str)
  *		updated after processing
  *
  * Prints out characters until a valid conversion specifier or end of string
- * 
+ *
  * @return: Number of characters printed
  */
 int	print_invalid_format(const char *str, int *pos)

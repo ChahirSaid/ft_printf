@@ -28,7 +28,7 @@ int		ft_putstr(char *str, t_flag flag);
 int		ft_putptr(void *ptr, t_flag flag);
 int		ft_putnbr(long nb, t_flag flag);
 int		ft_putunbr(unsigned long nb, t_flag flag);
-int		ft_puthex(int nb, int isupper, t_flag flag);
+int	ft_puthex(unsigned int nbr, int isupper, t_flag flag);
 
 void	init_flag(t_flag *flag);
 int		ft_strchr(char c, char *set);

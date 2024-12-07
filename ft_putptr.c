@@ -7,7 +7,7 @@
  * @addr: Long unsigned integer to convert and print
  *
  * Converts the number to hexadecimal digits (0-9, a-f)
- * 
+ *
  * @return: Total number of characters printed
  */
 static int	ft_putlonghex(long unsigned addr)
@@ -63,7 +63,7 @@ static int	ft_hexlen(long unsigned addr)
  *
  * Handles special cases like NULL pointer, prints "0x" prefix
  * Applies minimum width and right/left alignment
- * 
+ *
  * @return: Total number of characters printed
  */
 int	ft_putptr(void *ptr, t_flag flag)

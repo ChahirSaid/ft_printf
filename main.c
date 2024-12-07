@@ -12,41 +12,57 @@
 
 #include "ft_printf.h"
 #include <stdio.h>
+
+int	main(void)
+{
+	int	a;
+	int	x;
+	int	y;
+
+	printf("copy%d\n", ft_printf("|%10.5i|", -216));
+	printf("original%d\n", printf("|%10.5i|", -216));
+	/*
+	a = 58;
+	// scanf("%d", &a);
+	x = printf("|%#17.5x|", a);
+	printf("\n");
+	y = ft_printf("|%#17.5x|", a);
+	printf("\n Expected %d to deeply equal to %d\n", x, y);
+	*/
+}
+
 /*int main()
 {
-	 int a =58;
+	int	a;
+	int	x;
+	int	y;
+
+		a = -58;
 	//scanf("%d", &a);
-	int x = printf("|%#.5x|", a);
+	x = printf("|%10.5d|", a);
 	printf("\n");
-	int y = ft_printf("|%#.5x|", a);
+	y = ft_printf("|%10.5d|", a);
 	printf("\n Expected %d to deeply equal to %d", x, y);
 }
 
-int main()
+int	main(void)
 {
-	 int a = -58;
-	//scanf("%d", &a);
-	int x = printf("|%10.5d|", a);
+		int a;
+	int	x;
+	int	y;
+
+	scanf("%d", &a);
+	x = printf("|%+10.7d|", a);
 	printf("\n");
-	int y = ft_printf("|%10.5d|", a);
+	y = ft_printf("|%+10.7d|", a);
 	printf("\n Expected %d to deeply equal to %d", x, y);
 }
-
-int main()
+int	main(void)
 {
-	 int a;
+		int a;
 	scanf("%d", &a);
 	int x = printf("|%+10.7d|", a);
 	printf("\n");
 	int y = ft_printf("|%+10.7d|", a);
 	printf("\n Expected %d to deeply equal to %d", x, y);
 }*/
-int main()
-{
-	 int a;
-	scanf("%d", &a);
-	int x = printf("|%+10.7d|", a);
-	printf("\n");
-	int y = ft_printf("|%+10.7d|", a);
-	printf("\n Expected %d to deeply equal to %d", x, y);
-}
