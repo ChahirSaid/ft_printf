@@ -1,5 +1,15 @@
 #include "ft_printf.h"
 
+/**
+ * handle_flags - Processes and sets formatting flags for printf-like output
+ *
+ * @flag: Pointer to flag structure to be modified
+ * @str: The format string containing flags
+ * @pos: Pointer to current position,
+ *		updated when parsing numeric width/precision
+ *
+ * Interprets flags like #, space, +, 0, -, and . for formatting
+ */
 void	handle_flags(t_flag *flag, const char *str, int *pos)
 {
 	if (str[1] == '#')
@@ -25,6 +35,18 @@ void	handle_flags(t_flag *flag, const char *str, int *pos)
 	}
 }
 
+/**
+ * handle_spec - Processes and prints a specific format specifier
+ *
+ * @str: The format string at the current specifier
+ * @args: Variable argument list
+ * @flag: Formatting flags
+ * @args_used: Pointer to track if an argument was consumed
+ *
+ * Handles printing for different conversion specifiers (cspdiuxX%)
+ * 
+ * @return: Number of characters printed, or -1 if an invalid specifier
+ */
 int	handle_spec(const char *str, va_list *args, t_flag flag, int *args_used)
 {
 	int	total;
@@ -53,6 +75,17 @@ int	handle_spec(const char *str, va_list *args, t_flag flag, int *args_used)
 	return (total);
 }
 
+/**
+ * process - Processes a single format specifier in the printf-like string
+ *
+ * @str: The entire format string
+ * @args: Variable argument list
+ * @pos: Pointer to current position in the string, updated during processing
+ *
+ * Parses flags, minimum width, and calls appropriate printing function
+ * 
+ * @return: Number of characters printed, or -1 on error
+ */
 int	process(const char *str, va_list *args, int *pos)
 {
 	int		total;
@@ -82,6 +115,16 @@ int	process(const char *str, va_list *args, int *pos)
 	return (total);
 }
 
+/**
+ * ft_printf - Custom implementation of printf
+ *
+ * @str: Format string with conversion specifiers
+ * @...: Variable number of arguments matching specifiers
+ *
+ * Parses format string, processes specifiers, and prints corresponding arguments
+ * 
+ * @return: Total number of characters printed, or -1 on error
+ */
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;

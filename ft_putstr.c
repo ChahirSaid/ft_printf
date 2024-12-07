@@ -1,5 +1,12 @@
 #include "ft_printf.h"
 
+/**
+ * print_str - Prints an entire string to standard output
+ *
+ * @str: String to print
+ *
+ * @return: Number of characters printed
+ */
 int	print_str(char *str)
 {
 	int	pos;
@@ -10,7 +17,15 @@ int	print_str(char *str)
 	return (pos);
 }
 
-static int	print_str_size(char *str, int size)
+/**
+ * putstr_size - Prints a string with optional size limitation
+ *
+ * @str: String to print
+ * @size: Maximum number of characters to print, or -1 for full string
+ *
+ * @return: Number of characters printed
+ */
+static int	putstr_size(char *str, int size)
 {
 	int	pos;
 
@@ -22,6 +37,17 @@ static int	print_str_size(char *str, int size)
 	return (pos);
 }
 
+/**
+ * ft_putstr - Prints a string with formatting options
+ *
+ * @str: String to print
+ * @flag: Formatting flags for width, precision, and alignment
+ *
+ * Handles NULL strings, applies minimum width and precision
+ * Supports right/left alignment
+ * 
+ * @return: Total number of characters printed
+ */
 int	ft_putstr(char *str, t_flag flag)
 {
 	int	pos;
@@ -37,9 +63,9 @@ int	ft_putstr(char *str, t_flag flag)
 	if (!flag.dot)
 		flag.precision = -1;
 	if (!str)
-		pos += print_str_size("(null)", flag.precision);
+		pos += putstr_size("(null)", flag.precision);
 	else
-		pos += print_str_size(str, flag.precision);
+		pos += putstr_size(str, flag.precision);
 	while (pos < flag.offset)
 		pos += ft_put_char(' ');
 	return (pos);

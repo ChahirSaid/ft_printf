@@ -1,5 +1,12 @@
 #include "ft_printf.h"
 
+/**
+ * print_unumber - Recursively prints an unsigned long integer
+ *
+ * @nl: Unsigned long integer to print
+ *
+ * @return: Total number of characters printed
+ */
 int	print_unumber(unsigned long nb)
 {
 	int				total;
@@ -13,6 +20,13 @@ int	print_unumber(unsigned long nb)
 	return (total);
 }
 
+/**
+ * ft_intlen - Calculates number of digits in an unsigned long integer
+ *
+ * @num: Unsigned long integer to count digits for
+ *
+ * @return: Number of digits
+ */
 static int	ft_intlen(unsigned long num)
 {
 	int	pos;
@@ -28,6 +42,16 @@ static int	ft_intlen(unsigned long num)
 	return (pos);
 }
 
+/**
+ * get_values - Prepares values for unsigned number printing with formatting
+ *
+ * @prefix: Pointer to store padding character
+ * @lp: Pointer to store precision length
+ * @flag: Formatting flags
+ * @num: Unsigned number to be printed
+ *
+ * @return: Actual length of the number
+ */
 static int	get_values(char *prefix, int *lp, t_flag *flag, unsigned long num)
 {
 	int	len;
@@ -46,6 +70,15 @@ static int	get_values(char *prefix, int *lp, t_flag *flag, unsigned long num)
 	return (len);
 }
 
+/**
+ * print_u - Prints an unsigned number with specific formatting conditions
+ *
+ * @len: Length of the number
+ * @num: Unsigned number to print
+ * @flag: Formatting flags
+ *
+ * @return: Number of characters printed
+ */
 static int	print_u(int len, unsigned long num, t_flag flag)
 {
 	if (num == 0 && ((flag.min_width && flag.min_width < len) || (flag.dot
@@ -56,6 +89,14 @@ static int	print_u(int len, unsigned long num, t_flag flag)
 	return (print_unumber(num));
 }
 
+/**
+ * ft_putunbr - Prints an unsigned number with comprehensive formatting
+ *
+ * @num: Unsigned long integer to print
+ * @flag: Formatting flags
+ *
+ * @return: Total number of characters printed
+ */
 int	ft_putunbr(unsigned long num, t_flag flag)
 {
 	int		total;

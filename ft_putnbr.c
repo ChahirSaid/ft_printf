@@ -1,5 +1,14 @@
 #include "ft_printf.h"
 
+/**
+ * print_minus - Handles negative number sign printing
+ *
+ * @nl: Pointer to number, modified to positive
+ * @len: Pointer to length, adjusted for sign
+ * @flag: Formatting flags
+ *
+ * @return: Always 1 (for the printed minus sign)
+ */
 static int	print_minus(long *nb, int *len, t_flag flag)
 {
 	ft_put_char('-');
@@ -10,6 +19,13 @@ static int	print_minus(long *nb, int *len, t_flag flag)
 	return (1);
 }
 
+/**
+ * ft_intlen - Calculates number of digits in a number
+ *
+ * @num: Number to count digits for
+ *
+ * @return: Number of digits (including sign for negative numbers)
+ */
 static int	ft_intlen(long num)
 {
 	int	pos;
@@ -27,6 +43,16 @@ static int	ft_intlen(long num)
 	return (pos);
 }
 
+/**
+ * get_values - Prepares values for number printing with formatting
+ *
+ * @prefix: Pointer to store padding character
+ * @len_prec: Pointer to store precision length
+ * @flag: Formatting flags
+ * @nl: Number to be printed
+ *
+ * @return: Actual length of the number
+ */
 static int	get_values(char *prefix, int *len_prec, t_flag *flag, long nb)
 {
 	int	len;
@@ -52,6 +78,15 @@ static int	get_values(char *prefix, int *len_prec, t_flag *flag, long nb)
 	return (len);
 }
 
+/**
+ * print_di - Prints a decimal or integer number with specific formatting
+ *
+ * @len: Length of the number
+ * @nl: Number to print
+ * @flag: Formatting flags
+ *
+ * @return: Number of characters printed
+ */
 static int	print_di(int len, long nb, t_flag flag)
 {
 	if (nb == 0 && ((flag.min_width && flag.min_width < len) || (flag.dot
@@ -62,6 +97,14 @@ static int	print_di(int len, long nb, t_flag flag)
 	return (putnbr(nb));
 }
 
+/**
+ * ft_putnbr - Prints a number with comprehensive formatting
+ *
+ * @nl: Number to print
+ * @flag: Formatting flags
+ *
+ * @return: Total number of characters printed
+ */
 int	ft_putnbr(long nb, t_flag flag)
 {
 	int		total;

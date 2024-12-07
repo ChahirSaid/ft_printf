@@ -1,5 +1,15 @@
 #include "ft_printf.h"
 
+/**
+ * check_format - Validates the format specifier syntax in a printf-like string
+ *
+ * @str: The format string to validate
+ *
+ * Checks for valid flag combinations,
+ *		dot (.) occurrence, and valid conversion specifiers
+ * 
+ * @return: 1 if format is valid, 0 if invalid
+ */
 int	check_format(const char *str)
 {
 	int	dots;
@@ -26,6 +36,17 @@ int	check_format(const char *str)
 	return (1);
 }
 
+/**
+ * print_invalid_format - Handles and prints an invalid format specifier
+ *
+ * @str: The invalid format string
+ * @pos: Pointer to the current position in the main string,
+ *		updated after processing
+ *
+ * Prints out characters until a valid conversion specifier or end of string
+ * 
+ * @return: Number of characters printed
+ */
 int	print_invalid_format(const char *str, int *pos)
 {
 	int	total;
