@@ -68,7 +68,6 @@ int	ft_puthex(unsigned int nbr, int isupper, t_flag flag)
 	if (flag.sharp && nbr != 0)
 		len_with_prefix += 2;
 	len_prec = (flag.precision > len) ? flag.precision : len;
-		otherwise use spaces
 	prefix = (flag.zero && !flag.dot) ? '0' : ' ';
 	base = isupper ? "0123456789ABCDEF" : "0123456789abcdef";
 	while (prefix == ' ' && len_with_prefix + total < flag.min_width)
