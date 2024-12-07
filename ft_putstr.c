@@ -38,14 +38,29 @@ static int	putstr_size(char *str, int size)
 }
 
 /**
+ * handle_null_str - Handles printing of NULL string based on precision
+ *
+ * @flag: Formatting flags for precision
+ *
+ * @return: Number of characters printed or 0
+ */
+static int	handle_null_str(t_flag flag)
+{
+	if (!flag.dot || flag.precision < 0)
+		return (putstr_size("(null)", -1));
+	if (flag.precision < 6)
+		return (0);
+	return (putstr_size("(null)", 6));
+}
+
+/**
  * ft_putstr - Prints a string with formatting options
  *
  * @str: String to print
  * @flag: Formatting flags for width, precision, and alignment
  *
- * Handles NULL strings, applies minimum width and precision
- * Supports right/left alignment
- * 
+ * Handles NULL strings with precision according to printf behavior
+ *
  * @return: Total number of characters printed
  */
 int	ft_putstr(char *str, t_flag flag)
@@ -55,17 +70,17 @@ int	ft_putstr(char *str, t_flag flag)
 
 	pos = 0;
 	if (!str)
-		len = 6;
+	{
+		len = handle_null_str(flag);
+		return (len);
+	}
 	else
 		len = ft_strlen(str);
 	while (pos + len < flag.min_width)
 		pos += ft_put_char(' ');
 	if (!flag.dot)
 		flag.precision = -1;
-	if (!str)
-		pos += putstr_size("(null)", flag.precision);
-	else
-		pos += putstr_size(str, flag.precision);
+	pos += putstr_size(str, flag.precision);
 	while (pos < flag.offset)
 		pos += ft_put_char(' ');
 	return (pos);
