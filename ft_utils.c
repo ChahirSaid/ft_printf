@@ -53,17 +53,17 @@ int	ft_strchr(char c, char *set)
 	return (0);
 }
 
-int	putnbr(long nl)
+int	putnbr(long nb)
 {
 	int		total;
 	long	num;
 
 	total = 0;
-	num = nl;
-	if (nl < 0)
+	num = nb;
+	if (nb < 0)
 	{
 		total += ft_put_char('-');
-		num = -nl;
+		num = -nb;
 	}
 	if (num >= 10)
 		total += putnbr(num / 10);

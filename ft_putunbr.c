@@ -1,19 +1,19 @@
 #include "ft_printf.h"
 
-int	print_unumber(unsigned long nl)
+int	print_unumber(unsigned long nb)
 {
 	int				total;
 	unsigned long	num;
 
 	total = 0;
-	num = nl;
+	num = nb;
 	if (num >= 10)
 		total += print_unumber(num / 10);
 	total += ft_put_char((num % 10) + '0');
 	return (total);
 }
 
-static int	number_of_digit(unsigned long num)
+static int	ft_intlen(unsigned long num)
 {
 	int	pos;
 
@@ -32,7 +32,7 @@ static int	get_values(char *prefix, int *lp, t_flag *flag, unsigned long num)
 {
 	int	len;
 
-	len = number_of_digit(num);
+	len = ft_intlen(num);
 	*lp = len;
 	if (flag->precision > len)
 		*lp = flag->precision;

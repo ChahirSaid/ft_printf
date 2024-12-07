@@ -26,16 +26,16 @@ int		print_invalid_format(const char *str, int *pos);
 int		ft_putchar(char c, t_flag flag);
 int		ft_putstr(char *str, t_flag flag);
 int		ft_putptr(void *ptr, t_flag flag);
-int		ft_putnbr(long nl, t_flag flag);
-int		ft_putunbr(unsigned long nl, t_flag flag);
-int		ft_puthex(int nl, int isupper, t_flag flag);
+int		ft_putnbr(long nb, t_flag flag);
+int		ft_putunbr(unsigned long nb, t_flag flag);
+int		ft_puthex(int nb, int isupper, t_flag flag);
 
 int		ft_strlen(char *str);
 int		ft_atoi(const char *str, int *o_pos);
 int		print_str(char *str);
 int		ft_put_char(char c);
 int		ft_strchr(char c, char *set);
-int		putnbr(long nl);
+int		putnbr(long nb);
 void	init_flag(t_flag *flag);
 
 #endif
