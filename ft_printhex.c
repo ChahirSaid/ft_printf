@@ -1,5 +1,12 @@
 #include "ft_printf.h"
 
+/**
+ * ft_hexlen - Calculate length of a hexadecimal representation
+ * 
+ * @nbr: Unsigned long number to convert
+ * 
+ * Returns: Number of hexadecimal digits
+ */
 int	ft_hexlen(unsigned long nbr)
 {
 	unsigned long	len;
@@ -15,6 +22,13 @@ int	ft_hexlen(unsigned long nbr)
 	return (len);
 }
 
+/**
+ * ft_sharp - Get hexadecimal prefix based on specifier
+ * 
+ * @flag: Formatting flags structure
+ * 
+ * Returns: Hexadecimal prefix string ("0X" or "0x")
+ */
 static char	*ft_sharp(t_format flag)
 {
 	if (flag.specifier == 'X')
@@ -22,6 +36,15 @@ static char	*ft_sharp(t_format flag)
 	return ("0x");
 }
 
+/**
+ * ft_puthex - Recursively print hexadecimal representation of a number
+ * 
+ * @flag: Formatting flags structure
+ * @n: Number to convert
+ * @iteration: Flag to track first recursive call
+ * 
+ * Returns: Total number of characters printed
+ */
 int	ft_puthex(t_format flag, size_t n, size_t iteration)
 {
 	int			total;
@@ -37,6 +60,14 @@ int	ft_puthex(t_format flag, size_t n, size_t iteration)
 	return (total + ft_putchar(base[n % 16]));
 }
 
+/**
+ * printhex_helper - Helper function to print hexadecimal with formatting
+ * 
+ * @flag: Formatting flags structure
+ * @n: Unsigned integer to print
+ * 
+ * Returns: Total number of characters printed
+ */
 static int	printhex_helper(t_format flag, unsigned int n)
 {
 	int	total;
@@ -65,6 +96,14 @@ static int	printhex_helper(t_format flag, unsigned int n)
 	return (total);
 }
 
+/**
+ * ft_printhex - Print hexadecimal number with specified formatting
+ * 
+ * @flag: Formatting flags structure
+ * @args: Variadic argument list
+ * 
+ * Returns: Total number of characters printed
+ */
 int	ft_printhex(t_format flag, va_list args)
 {
 	int				total;

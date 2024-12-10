@@ -1,5 +1,13 @@
 #include "ft_printf.h"
 
+/**
+ * printptr_helper - Helper function to print pointer address
+ * 
+ * @flag: Formatting flags structure
+ * @n: Pointer address to print
+ * 
+ * Returns: Total number of characters printed
+ */
 static int	printptr_helper(t_format flag, size_t n)
 {
 	int	total;
@@ -29,6 +37,14 @@ static int	printptr_helper(t_format flag, size_t n)
 	return (total);
 }
 
+/**
+ * ft_printptr - Print pointer address with specified formatting
+ * 
+ * @flag: Formatting flags structure
+ * @args: Variadic argument list
+ * 
+ * Returns: Total number of characters printed
+ */
 int	ft_printptr(t_format flag, va_list args)
 {
 	size_t	n;

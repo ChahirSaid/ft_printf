@@ -1,5 +1,10 @@
 #include "ft_printf.h"
 
+/**
+ * init_flag - Initialize formatting flags structure to default values
+ * 
+ * @format: Pointer to formatting flags structure
+ */
 void	init_flag(t_format *format)
 {
 	format->sharp = 0;
@@ -14,6 +19,13 @@ void	init_flag(t_format *format)
 	format->specifier = 0;
 }
 
+/**
+ * ft_atoi - Convert string to integer
+ * 
+ * @str: String to convert
+ * 
+ * Returns: Converted integer value
+ */
 int	ft_atoi(const char *str)
 {
 	int		sign;
@@ -35,6 +47,14 @@ int	ft_atoi(const char *str)
 	return (sign * nb);
 }
 
+/**
+ * ft_strchr - Find first occurrence of a character in a string
+ * 
+ * @str: String to search
+ * @c: Character to find
+ * 
+ * Returns: Pointer to first occurrence of character, or NULL if not found
+ */
 char	*ft_strchr(const char *str, int c)
 {
 	while (*str)
@@ -48,6 +68,13 @@ char	*ft_strchr(const char *str, int c)
 	return (0);
 }
 
+/**
+ * ft_strlen - Calculate length of a string
+ * 
+ * @str: String to measure
+ * 
+ * Returns: Number of characters in the string
+ */
 int	ft_strlen(const char *str)
 {
 	int	i;

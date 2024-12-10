@@ -1,5 +1,13 @@
 #include "ft_printf.h"
 
+/**
+ * handle_specifier - Process different format specifiers
+ * 
+ * @flag: Formatting flags structure
+ * @args: Variadic argument list
+ * 
+ * Returns: Total number of characters printed
+ */
 int	handle_specifier(t_format flag, va_list args)
 {
 	int	total;
@@ -20,6 +28,13 @@ int	handle_specifier(t_format flag, va_list args)
 	return (total);
 }
 
+/**
+ * validate_format - Validate the format string for correct specifier
+ * 
+ * @format: Format string to validate
+ * 
+ * Returns: 1 if format is valid, 0 otherwise
+ */
 int	validate_format(const char *format)
 {
 	int	i;
@@ -43,6 +58,14 @@ int	validate_format(const char *format)
 	return (1);
 }
 
+/**
+ * process_format - Process a single format specifier
+ * 
+ * @str: Pointer to format string
+ * @args: Variadic argument list
+ * 
+ * Returns: Total number of characters printed
+ */
 static int	process_format(const char **str, va_list args)
 {
 	int			total;
@@ -64,6 +87,14 @@ static int	process_format(const char **str, va_list args)
 	return (total);
 }
 
+/**
+ * ft_printf - Custom printf-like function with variadic arguments
+ * 
+ * @str: Format string
+ * @...: Variable number of arguments
+ * 
+ * Returns: Total number of characters printed
+ */
 int	ft_printf(const char *str, ...)
 {
 	int		total;

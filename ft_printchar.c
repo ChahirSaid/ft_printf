@@ -1,10 +1,25 @@
 #include "ft_printf.h"
 
+/**
+ * ft_putchar - Write a single character to standard output
+ * 
+ * @c: Character to print
+ * 
+ * Returns: Number of characters printed (always 1)
+ */
 int	ft_putchar(char c)
 {
 	return (write(1, &c, 1));
 }
 
+/**
+ * ft_putnchar - Write multiple copies of a character to standard output
+ * 
+ * @c: Character to print
+ * @n: Number of times to print the character
+ * 
+ * Returns: Total number of characters printed
+ */
 int	ft_putnchar(char c, int n)
 {
 	int	total;
@@ -15,6 +30,14 @@ int	ft_putnchar(char c, int n)
 	return (total);
 }
 
+/**
+ * ft_printchar - Print a character with specified formatting
+ * 
+ * @flag: Formatting flags structure
+ * @args: Variadic argument list
+ * 
+ * Returns: Total number of characters printed
+ */
 int	ft_printchar(t_format flag, va_list args)
 {
 	char	c;
