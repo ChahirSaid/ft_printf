@@ -14,9 +14,9 @@
 
 /**
  * ft_putchar - Write a single character to standard output
- * 
+ *
  * @c: Character to print
- * 
+ *
  * Returns: Number of characters printed (always 1)
  */
 int	ft_putchar(char c)
@@ -26,10 +26,10 @@ int	ft_putchar(char c)
 
 /**
  * ft_putnchar - Write multiple copies of a character to standard output
- * 
+ *
  * @c: Character to print
  * @n: Number of times to print the character
- * 
+ *
  * Returns: Total number of characters printed
  */
 int	ft_putnchar(char c, int n)
@@ -44,10 +44,10 @@ int	ft_putnchar(char c, int n)
 
 /**
  * ft_printchar - Print a character with specified formatting
- * 
+ *
  * @flag: Formatting flags structure
  * @args: Variadic argument list
- * 
+ *
  * Returns: Total number of characters printed
  */
 int	ft_printchar(t_format flag, va_list args)

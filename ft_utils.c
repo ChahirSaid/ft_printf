@@ -14,7 +14,7 @@
 
 /**
  * init_flag - Initialize formatting flags structure to default values
- * 
+ *
  * @format: Pointer to formatting flags structure
  */
 void	init_flag(t_format *format)
@@ -33,9 +33,9 @@ void	init_flag(t_format *format)
 
 /**
  * ft_atoi - Convert string to integer
- * 
+ *
  * @str: String to convert
- * 
+ *
  * Returns: Converted integer value
  */
 int	ft_atoi(const char *str)
@@ -61,10 +61,10 @@ int	ft_atoi(const char *str)
 
 /**
  * ft_strchr - Find first occurrence of a character in a string
- * 
+ *
  * @str: String to search
  * @c: Character to find
- * 
+ *
  * Returns: Pointer to first occurrence of character, or NULL if not found
  */
 char	*ft_strchr(const char *str, int c)
@@ -82,9 +82,9 @@ char	*ft_strchr(const char *str, int c)
 
 /**
  * ft_strlen - Calculate length of a string
- * 
+ *
  * @str: String to measure
- * 
+ *
  * Returns: Number of characters in the string
  */
 int	ft_strlen(const char *str)

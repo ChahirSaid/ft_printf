@@ -14,10 +14,10 @@
 
 /**
  * handle_specifier - Process different format specifiers
- * 
+ *
  * @flag: Formatting flags structure
  * @args: Variadic argument list
- * 
+ *
  * Returns: Total number of characters printed
  */
 int	handle_specifier(t_format flag, va_list args)
@@ -42,9 +42,9 @@ int	handle_specifier(t_format flag, va_list args)
 
 /**
  * validate_format - Validate the format string for correct specifier
- * 
+ *
  * @format: Format string to validate
- * 
+ *
  * Returns: 1 if format is valid, 0 otherwise
  */
 int	validate_format(const char *format)
@@ -72,10 +72,10 @@ int	validate_format(const char *format)
 
 /**
  * process_format - Process a single format specifier
- * 
+ *
  * @str: Pointer to format string
  * @args: Variadic argument list
- * 
+ *
  * Returns: Total number of characters printed
  */
 static int	process_format(const char **str, va_list args)
@@ -91,6 +91,12 @@ static int	process_format(const char **str, va_list args)
 		return (total);
 	}
 	(*str)++;
+	if (**str == '\0' || (!ft_strchr(SPEC, **str) && !ft_isdigit(**str)
+			&& !ft_strchr("-+ #0.", **str)))
+	{
+		va_end(args);
+		return (-1);
+	}
 	total += process((char *)*str, args);
 	while (**str && !ft_strchr(SPEC, **str))
 		(*str)++;
@@ -101,15 +107,16 @@ static int	process_format(const char **str, va_list args)
 
 /**
  * ft_printf - Custom printf-like function with variadic arguments
- * 
+ *
  * @str: Format string
  * @...: Variable number of arguments
- * 
+ *
  * Returns: Total number of characters printed
  */
 int	ft_printf(const char *str, ...)
 {
 	int		total;
+	int		result;
 	va_list	args;
 
 	total = 0;
@@ -117,7 +124,12 @@ int	ft_printf(const char *str, ...)
 	while (*str)
 	{
 		if (*str == '%')
-			total += process_format(&str, args);
+		{
+			result = process_format(&str, args);
+			if (result == -1)
+				return (-1);
+			total += result;
+		}
 		else
 			total += ft_putchar(*str++);
 	}

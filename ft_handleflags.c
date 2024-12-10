@@ -14,9 +14,9 @@
 
 /**
  * ft_isdigit - Checks if a character is a digit (0-9)
- * 
+ *
  * @c: Character to be checked
- * 
+ *
  * Returns: 1 if character is a digit, 0 otherwise
  */
 int	ft_isdigit(int c)
@@ -26,10 +26,10 @@ int	ft_isdigit(int c)
 
 /**
  * handle_flags - Process flags in format string (like +, space, #)
- * 
+ *
  * @str: Format string
  * @flag: Current formatting flags structure
- * 
+ *
  * Returns: Updated formatting flags structure
  */
 static t_format	handle_flags(char *str, t_format flag)
@@ -49,10 +49,10 @@ static t_format	handle_flags(char *str, t_format flag)
 
 /**
  * handle_width - Process width-related flags (-, 0, numeric width)
- * 
+ *
  * @str: Format string
  * @flag: Current formatting flags structure
- * 
+ *
  * Returns: Updated formatting flags structure
  */
 static t_format	handle_width(char *str, t_format flag)
@@ -78,10 +78,10 @@ static t_format	handle_width(char *str, t_format flag)
 
 /**
  * handle_precision - Process precision-related flags
- * 
+ *
  * @str: Format string
  * @flag: Current formatting flags structure
- * 
+ *
  * Returns: Updated formatting flags structure
  */
 static t_format	handle_precision(char *str, t_format flag)
@@ -103,10 +103,10 @@ static t_format	handle_precision(char *str, t_format flag)
 
 /**
  * process - Main processing function for format specifiers
- * 
+ *
  * @str: Format string
  * @args: Variadic argument list
- * 
+ *
  * Returns: Result of handling the specific format specifier
  */
 int	process(char *str, va_list args)

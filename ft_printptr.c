@@ -14,10 +14,10 @@
 
 /**
  * printptr_helper - Helper function to print pointer address
- * 
+ *
  * @flag: Formatting flags structure
  * @n: Pointer address to print
- * 
+ *
  * Returns: Total number of characters printed
  */
 static int	printptr_helper(t_format flag, size_t n)
@@ -51,10 +51,10 @@ static int	printptr_helper(t_format flag, size_t n)
 
 /**
  * ft_printptr - Print pointer address with specified formatting
- * 
+ *
  * @flag: Formatting flags structure
  * @args: Variadic argument list
- * 
+ *
  * Returns: Total number of characters printed
  */
 int	ft_printptr(t_format flag, va_list args)

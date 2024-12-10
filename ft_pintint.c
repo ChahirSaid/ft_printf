@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
 /**
  * plus - Determine sign character based on flags
- * 
+ *
  * @flag: Formatting flags structure
- * 
+ *
  * Returns: '+' or '-' sign character
  */
 static char	plus(t_format flag)
@@ -27,11 +28,11 @@ static char	plus(t_format flag)
 
 /**
  * ft_strncmp - Compare first n characters of two strings
- * 
+ *
  * @s1: First string
  * @s2: Second string
  * @t: Maximum number of characters to compare
- * 
+ *
  * Returns: Difference between first differing characters
  */
 static int	ft_strncmp(const char *s1, const char *s2, size_t t)
@@ -48,12 +49,12 @@ static int	ft_strncmp(const char *s1, const char *s2, size_t t)
 
 /**
  * ft_printnbr - Print formatted number with various flags
- * 
+ *
  * @flag: Formatting flags structure
  * @nb: Number string to print
  * @len: Length of number string
  * @is_neg: Flag indicating if number is negative
- * 
+ *
  * Returns: Total number of characters printed
  */
 static int	ft_printnbr(t_format flag, char *nb, int len, int is_neg)
@@ -86,10 +87,10 @@ static int	ft_printnbr(t_format flag, char *nb, int len, int is_neg)
 
 /**
  * ft_printint - Print integer with specified formatting
- * 
+ *
  * @flag: Formatting flags structure
  * @args: Variadic argument list
- * 
+ *
  * Returns: Total number of characters printed
  */
 int	ft_printint(t_format flag, va_list args)
