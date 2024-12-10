@@ -1,5 +1,5 @@
-SRCS		= ft_printf.c ft_checkformat.c ft_utils.c ft_putchar.c \
-			ft_putstr.c ft_putptr.c ft_putnbr.c ft_putunbr.c ft_puthex.c
+SRCS		= ft_printf.c ft_handleflags.c ft_utils.c ft_itoa.c \
+			ft_printchar.c ft_printstr.c ft_pintint.c ft_printhex.c ft_printptr.c 
 
 OBJS		= ${SRCS:.c=.o}
 NAME		= libftprintf.a
@@ -27,3 +27,7 @@ fclean: clean
 		${RM} ${NAME}
 
 re: fclean all
+
+a:
+		@${CC} main.c libftprintf.a -o main
+		@./main

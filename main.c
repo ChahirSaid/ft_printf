@@ -1,68 +1,60 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: schahir <schahir@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/07 14:36:31 by schahir           #+#    #+#             */
-/*   Updated: 2024/12/07 14:49:05 by schahir          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	main(void)
+int main(void)
 {
-	int	a;
-	int	x;
-	int	y;
+    int x, y, p, ft_p, type, choice;
+    char str[100];
+    void *ptr;
 
-	printf("copy%d\n", ft_printf("|%10.5i|", -216));
-	printf("original%d\n", printf("|%10.5i|", -216));
-	/*
-	a = 58;
-	// scanf("%d", &a);
-	x = printf("|%#17.5x|", a);
-	printf("\n");
-	y = ft_printf("|%#17.5x|", a);
-	printf("\n Expected %d to deeply equal to %d\n", x, y);
-	*/
+    do {
+        printf("\nSelect type:\n");
+        printf("1: int\n2: char\n3: string\n4: hex\n5: HEX\n6: pointer\n -> ");
+        scanf("%d", &type);
+
+        if (type == 1) {
+            printf("Enter an integer: ");
+            scanf("%d", &x);
+            ft_p = ft_printf("%d\n", x);
+            p = printf("%d\n", x);
+        } 
+        else if (type == 2) {
+            printf("Enter a character: ");
+            scanf(" %c", (char *)&y);
+            ft_p = ft_printf("%c\n", y);
+            p = printf("%c\n", y);
+        } 
+        else if (type == 3) {
+            printf("Enter a string: ");
+            scanf("%99s", str);
+            ft_p = ft_printf("%s\n", str);
+            p = printf("%s\n", str);
+        } 
+        else if (type == 4) {
+            printf("Enter a hexadecimal value: ");
+            scanf("%x", &x);
+            ft_p = ft_printf("%x\n", x);
+            p = printf("%x\n", x);
+        } 
+        else if (type == 5) {
+            printf("Enter a hexadecimal value (uppercase): ");
+            scanf("%X", &x);
+            ft_p = ft_printf("%X\n", x);
+            p = printf("%X\n", x);
+        } 
+        else if (type == 6) {
+            printf("Enter a memory address (pointer): ");
+            scanf("%p", &ptr);
+            ft_p = ft_printf("%p\n", ptr);
+            p = printf("%p\n", ptr);
+        } 
+        else {
+            printf("Invalid type selection.\n");
+            continue;
+        }
+        printf("ft_printf: %d \t printf: %d \n", ft_p, p);
+        printf("\nType 1 to enter new input or 2 to close: ");
+        scanf("%d", &choice);
+    } while (choice == 1);
+    return 0;
 }
-
-/*int main()
-{
-	int	a;
-	int	x;
-	int	y;
-
-		a = -58;
-	//scanf("%d", &a);
-	x = printf("|%10.5d|", a);
-	printf("\n");
-	y = ft_printf("|%10.5d|", a);
-	printf("\n Expected %d to deeply equal to %d", x, y);
-}
-
-int	main(void)
-{
-		int a;
-	int	x;
-	int	y;
-
-	scanf("%d", &a);
-	x = printf("|%+10.7d|", a);
-	printf("\n");
-	y = ft_printf("|%+10.7d|", a);
-	printf("\n Expected %d to deeply equal to %d", x, y);
-}
-int	main(void)
-{
-		int a;
-	scanf("%d", &a);
-	int x = printf("|%+10.7d|", a);
-	printf("\n");
-	int y = ft_printf("|%+10.7d|", a);
-	printf("\n Expected %d to deeply equal to %d", x, y);
-}*/

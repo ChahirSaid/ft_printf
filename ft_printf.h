@@ -2,40 +2,48 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+# include <limits.h>
+# include <stdlib.h>
 # include <unistd.h>
 
-typedef struct s_flag
+# define SPEC "csdiupxX%"
+
+typedef struct s_format
 {
-	int	sharp;
-	int	space;
-	int	plus;
-	int	min_width;
-	int	minus;
-	int	dot;
-	int	precision;
-	int	offset;
-	int	zero;
-	int	zero_offset;
-}		t_flag;
+	int		sharp;
+	int		space;
+	int		plus;
+	int		wdth;
+	int		prec_negative;
+	int		precision;
+	int		dot;
+	int		zero;
+	int		minus;
+	char	specifier;
+}			t_format;
 
-int		ft_printf(const char *str, ...);
+int			ft_printf(const char *str, ...);
 
-int		check_format(const char *str);
-int		print_invalid_format(const char *str, int *pos);
+int			process(char *str, va_list args);
+void		init_flag(t_format *format);
+int			handle_specifier(t_format flag, va_list args);
 
-int		ft_putchar(char c, t_flag flag);
-int		ft_putstr(char *str, t_flag flag);
-int		ft_putptr(void *ptr, t_flag flag);
-int		ft_putnbr(long nb, t_flag flag);
-int		ft_putunbr(unsigned long nb, t_flag flag);
-int	ft_puthex(unsigned int nbr, int isupper, t_flag flag);
+int			ft_printchar(t_format flag, va_list args);
+int			ft_printstr(t_format flag, va_list args);
+int			ft_printint(t_format flag, va_list args);
+int			ft_printhex(t_format flag, va_list args);
+int			ft_printptr(t_format flag, va_list args);
 
-void	init_flag(t_flag *flag);
-int		ft_strchr(char c, char *set);
-int		ft_atoi(const char *str, int *o_pos);
-int		ft_strlen(char *str);
-int		ft_put_char(char c);
-int		print_str(char *str);
-int		putnbr(long nb);
+int			ft_strlen(const char *str);
+int			ft_putchar(char c);
+int			ft_putnchar(char c, int n);
+int			ft_putnstr(char *s, int n);
+int			ft_isdigit(int ch);
+char		*ft_strchr(const char *str, int ch);
+int			ft_atoi(const char *str);
+char		*ft_itoa(int nb);
+char		*ft_uitoa(unsigned int n);
+int			ft_hexlen(unsigned long nbr);
+int			ft_puthex(t_format flag, size_t n, size_t iteration);
 
 #endif
