@@ -53,16 +53,17 @@ static char	*ft_sharp(t_format flag)
  *
  * @flag: Formatting flags structure
  * @n: Number to convert
- * @iteration: Flag to track first recursive call
+ * @is_recurcive: Flag to track first recursive call
+ * 		prevents rechecking conditions meant only for the initial call (0,#,.)
  *
  * Returns: Total number of characters printed
  */
-int	ft_puthex(t_format flag, size_t n, size_t iteration)
+int	ft_puthex(t_format flag, size_t n, size_t is_recurcive)
 {
 	int			total;
 	const char	*base;
 
-	if (!(n > 0 || (!iteration && (flag.specifier != 'p' || !flag.dot))))
+	if (!(n > 0 || (!is_recurcive && (flag.specifier != 'p' || !flag.dot))))
 		return (0);
 	if (flag.specifier == 'X')
 		base = "0123456789ABCDEF";
