@@ -31,7 +31,7 @@ int	handle_specifier(t_format flag, va_list args)
 		total = ft_printstr(flag, args);
 	if (flag.specifier == 'd' || flag.specifier == 'i' || flag.specifier == 'u')
 		total = ft_printint(flag, args);
-	if (flag.specifier == 'X' || flag.specifier == 'x')
+	if (flag.specifier == 'x' || flag.specifier == 'X')
 		total = ft_printhex(flag, args);
 	if (flag.specifier == 'p')
 		total = ft_printptr(flag, args);
