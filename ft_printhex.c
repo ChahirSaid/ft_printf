@@ -39,13 +39,13 @@ int	ft_hexlen(unsigned long nbr)
  *
  * @flag: Formatting flags structure
  *
- * Returns: Hexadecimal prefix string ("0X" or "0x")
+ * Returns: Hexadecimal prefix string ("0x" or "0X")
  */
 static char	*ft_sharp(t_format flag)
 {
-	if (flag.specifier == 'X')
-		return ("0X");
-	return ("0x");
+	if (flag.specifier == 'x')
+		return ("0x");
+	return ("0X");
 }
 
 /**
