@@ -74,46 +74,46 @@ int	ft_puthex(t_format flag, size_t n, size_t is_recurcive)
 }
 
 /**
- * printhex_helper - Helper function to print hexadecimal with formatting
+ * ft_hex_prefix_padding - Print padding and prefix for hexadecimal conversion
  *
  * @flag: Formatting flags structure
- * @n: Unsigned integer to print
+ * @n: Number to convert
+ * @len: Length of the number
  *
  * Returns: Total number of characters printed
  */
-static int	printhex_helper(t_format flag, unsigned int n)
+static int	ft_hex_prefix_padding(t_format *flag, unsigned int n, int len)
 {
 	int	total;
-	int	len;
+	int	prefix_length;
 
 	total = 0;
-	len = ft_hexlen(n);
-	if (!n && !flag.precision && flag.dot)
-		len = 0;
-	if (flag.precision < 0 || flag.precision < len || !flag.dot)
-		flag.precision = len;
-	if (flag.sharp && n)
-		flag.wdth -= 2;
-	total += ft_putnstr(ft_sharp(flag), 2 * (flag.sharp && flag.zero && n));
-	if (!flag.minus && flag.wdth > flag.precision && (!flag.dot
-			|| flag.prec_negative) && flag.zero)
-		total += ft_putnchar('0', (flag.wdth - flag.precision));
-	else if (!flag.minus && flag.wdth > flag.precision)
-		total += ft_putnchar(' ', (flag.wdth - flag.precision));
-	total += ft_putnstr(ft_sharp(flag), 2 * (flag.sharp && !flag.zero && n));
-	total += ft_putnchar('0', (flag.precision - len));
-	if (len)
-		total += ft_puthex(flag, n, n);
-	if (flag.minus && flag.wdth > flag.precision)
-		total += ft_putnchar(' ', flag.wdth - flag.precision);
+	prefix_length = 0;
+	if (flag->sharp && flag->zero && n != 0)
+	{
+		prefix_length = 2;
+	}
+	if (flag->sharp && n)
+		flag->wdth -= 2;
+	total += ft_putnstr(ft_sharp(*flag), prefix_length);
+	if (!flag->minus && flag->wdth > flag->precision)
+	{
+		if ((!flag->dot || flag->prec_negative) && flag->zero)
+			total += ft_putnchar('0', (flag->wdth - flag->precision));
+		else
+			total += ft_putnchar(' ', (flag->wdth - flag->precision));
+	}
+	if (flag->sharp && !flag->zero && n)
+		total += ft_putnstr(ft_sharp(*flag), 2);
+	total += ft_putnchar('0', (flag->precision - len));
 	return (total);
 }
 
 /**
- * ft_printhex - Print hexadecimal number with specified formatting
+ * ft_printhex - Print hexadecimal conversion
  *
  * @flag: Formatting flags structure
- * @args: Variadic argument list
+ * @args: Variable argument list
  *
  * Returns: Total number of characters printed
  */
@@ -121,9 +121,19 @@ int	ft_printhex(t_format flag, va_list args)
 {
 	int				total;
 	unsigned int	n;
+	int				len;
 
 	total = 0;
 	n = va_arg(args, unsigned int);
-	total += printhex_helper(flag, n);
+	len = ft_hexlen(n);
+	if (!n && !flag.precision && flag.dot)
+		len = 0;
+	if (flag.precision < 0 || flag.precision < len || !flag.dot)
+		flag.precision = len;
+	total += ft_hex_prefix_padding(&flag, n, len);
+	if (len)
+		total += ft_puthex(flag, n, n);
+	if (flag.minus && flag.wdth > flag.precision)
+		total += ft_putnchar(' ', flag.wdth - flag.precision);
 	return (total);
 }
